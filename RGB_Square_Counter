@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> RGB Counter</title>
+</head>
+<body>
+    <div id="title">
+        <h2>Hello World</h2>
+    </div>
+
+    <div>
+        <button class='ColorSquare' id='red' style= "height : 100px; width : 100px; background-color: red;"></button>
+        <button class='ColorSquare' id='blue' style= "height : 100px; width : 100px; background-color: blue;"></button>
+        <button class='ColorSquare' id='green' style= "height : 100px; width : 100px; background-color: green;"></button>
+    </div>
+    <button id="clear-game"> Clear Game </button>
+    <script>
+        
+        let titleDiv = document.getElementById('title')
+        console.log('Before:', titleDiv.innerText)
+        
+        let message = 'Square Color Counter 🚀'
+        titleDiv.innerHTML = `<h3>${message}</h3>`
+        console.log('After:', titleDiv.innerText)
+        titleDiv.style.backgroundColor='pink'
+        
+        
+        let squares = document.querySelectorAll('.ColorSquare')
+        let timesClicked = { 'red':0 , 'blue':0 , 'green':0}
+        
+        //for each loop
+        squares.forEach(square => {
+               square.onclick = () => {
+                timesClicked[square.id] += 1
+                square.innerText = timesClicked[square.id]
+               }
+            }) 
+
+        function clearScores() {
+            timesClicked.red = 0
+            timesClicked.blue = 0
+            timesClicked.green = 0
+            squares.forEach(square => {
+            square.innerText = ''
+            })
+        }
+        const clearGameBtn = document.getElementById('clear-game')
+        clearGameBtn.onclick = () => clearScores()
+        
+
+    </script>
+</body>
+</html>
